@@ -12,4 +12,13 @@ function errorHandler(err, req, res, next) { //así no se utilice next en el có
   })
 }
 
-module.exports = { logErrors, errorHandler }; //exportarlo como modulo
+// ? Crear formato para devolverlo al cliente que se complementa con la función anterior:
+function boomErrorHandler(err, req, res, next) { //así no se utilice next en el código se debe poner aqui, ya que un middleware de error tiene los cuatro parámetros
+  if(err.isBoom){
+    const { output } = err;
+    res.status(output.statusCode).json(output.payload)
+  }
+  next(err)
+}
+
+module.exports = { logErrors, errorHandler, boomErrorHandler }; //exportarlo como modulo
