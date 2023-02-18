@@ -12,7 +12,7 @@ app.use(express.json());
 const whilelist = ['http://localhost', 'https://myapp.cl'] // ? rutas de las cuales SI quiero recibir peticiones
 const options = {
   origin: (origin, callback) => {
-    if (whilelist.includes(origin)){
+    if (whilelist.includes(origin) || !origin){
       callback(null, true);
     }else{
       callback(new Error('no permitido'))
