@@ -3,6 +3,8 @@ const boom = require("@hapi/boom");
 
 const pool = require('../libs/postgres.pool');
 
+const sequelize = require('../libs/sequelize');
+
 class ProductsService{
 
   constructor(){
@@ -37,13 +39,13 @@ class ProductsService{
 
   async find(){
     const query = 'SELECT * FROM tasks';
-    const rs = await this.pool.query(query);
-    return rs.rows;
+    const [data] = await sequelize.query(query);
+    return data;
   }
 
   async findOne(id){
     const query = `SELECT * FROM tasks WHERE id=${id} `;
-    const rs = await this.pool.query(query);
+    const rs = await sequelize.query(query);
     // if(!product){
     //   throw boom.notFound('Product not found')
     // }
