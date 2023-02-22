@@ -15,7 +15,7 @@ services:
   pgadmin:
     image: dpage/pgadmin4
     environment:
-      PGADMIN_DEFAULT_EMAIL: maxdn@mail.com
+      PGADMIN_DEFAULT_EMAIL: daniher02@gmail.com
       PGADMIN_DEFAULT_PASSWORD: root
     ports:
       - 5050:80
